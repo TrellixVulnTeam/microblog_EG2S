@@ -1,0 +1,264 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<article class="media content-section">
+  <div class="media-body">
+  <div class="article-metadata">
+    <img id="wall" class="mx-auto d-block" style="margin-right: 2.0em;" src="{{ url_for('static', filename='wall.jpg') }}">
+<div class="">
+  <img class="rounded-circle img" alt="5 Terre"   src="{{ image_file }}" >
+</div>
+<div id="social"  style="position: absolute;">
+    <a class="facebookBtn smGlobalBtn" href="https://www.facebook.com/{{links_facebook_id}}" ></a>
+    <a class="twitterBtn smGlobalBtn" href="https://twitter.com/{{links.twitter_id}}" ></a>
+    <a class="instagramBtn smGlobalBtn" href="http://www.instagram.com/{{links.instagram_id}}" ></a>
+    <a class="snapchatBtn smGlobalBtn" href="https://www.snapchat.com/add/{{links.snapchat_id}}" ></a>
+  </div>
+
+
+  <div class="basic"style="margin-left:27.0em;  position: all; ">
+          <div class="formd">
+          <b><h4 class="text-dark">Basic</h4></b>
+          <p><b class="text-muted" style="margin-right: 0.5em;">Member since</b>{{ moment(user.member_since).format('L') }}<br>
+          <b class="text-muted" style="margin-right: 0.5em;">Born</b>{{ moment(user.date_of_birth).format('L') }}<br>
+          <b class="text-muted" style="margin-right: 0.5em;">Gender</b>{{user.gender}}<br>
+          <b class="text-muted" style="margin-right: 0.5em;">Phone Number</b>{{user.contact_number}}<br>
+          <b class="text-muted" style="margin-right: 0.5em;">Education</b>{{user.education_level}}</p>
+          </div>
+
+</div>
+<div>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark bgbar">
+    <ul class="navbar-nav">
+      {% if user == current_user %}
+      <li class="nav-item active">
+        <a class="nav-item nav-link" title="edit profile" href="{{ url_for('users.account',id=user.id) }}"><i class="fas fa-pencil-alt"></i>&#xA0;Edit Profile</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link" title="Uplod Pictures " href="{{ url_for('users.media',id=user.id) }}"><i class="far fa-images"></i>&#xA0;Add Pictures</a>
+      </li>
+      <li class="nav-item active">
+      <a class="nav-item nav-link" title="Travel" href="{{ url_for('users.travel',id=user.id) }}"><i class="fas fa-plane-departure"></i>&#xA0;Travel</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link" title="Events" href="{{ url_for('users.events',id=user.id) }}"><i class="far fa-calendar-alt"></i>&#xA0;Events</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link" title="Create Post" href="{{ url_for('posts.new_post',id=user.id) }}"><i class="fas fa-comment-alt"></i>&#xA0;New Post</a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-item nav-link" title="New Blog" href="{{ url_for('blog.new_blog', id=current_user.id) }}"><i class="fas fa-passport"></i>&#xA0;New blog </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-item nav-link"  title="more information" data-toggle="modal" href="#" data-target="#myModal"><i class="fas fa-caret-down"></i>&#xA0;More</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+<h1 class="profile_name">{{ user.username }}</h1>
+ <h4 class="profile_email">{{ user.email }}</h4>
+
+
+
+
+
+        {% if user != current_user %}
+        {% if current_user.is_administrator() %}
+
+        <a type="links" class="btn btn-light" title="more information" data-toggle="modal" data-target="#myModal">...</a>
+
+        {% endif %}
+        {% endif %}
+        <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+            <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Background</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+                <!-- Modal body -->
+        <div class="modal-body">
+
+        <div>
+        <div class="formd">
+        <b><h4 class="text-dark">Address</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Street</b> {{address.street}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">City</b> {{ address.city }}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Country</b> {{ address.country}}<br>
+        </div>
+
+        <div class="formd">
+        <b><h4 class="text-dark">Occupation</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Occupation Name</b> {{occupation.occupation_name}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Occupation Company</b> {{ occupation.occupation_company }}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Occupation Start Date</b> {{ occupation.occupation_start_date}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Occupation End Date</b> {{ occupation.occupation_end_date}}<br>
+        </div>
+
+        <div class="formd">
+        <b><h4 class="text-dark">Interest</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Intrest Name</b> {{ intrest.intrest_type }}<br>
+        </div>
+
+         <div class="formd">
+        <b><h4 class="text-dark">Achievement</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Achievement Name</b> {{ achievement.medal_count }}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Date</b> {{ achievement.timestamp }}<br>
+        </div>
+
+        <div class="formd">
+        <b><h4 class="text-dark">Special Event</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Medal</b> {{ special_event.life_event }}<br>
+        <b class="text-muted" style="margin-right: 0.5em;"> Start Date</b> {{ special_event.life_event_start_date}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;"> End Date</b> {{ special_event.life_event_end_date}}<br>
+        </div>
+
+        <div class="formd">
+        <b><h4 class="text-dark">Sponsership</h4></b>
+        <b class="text-muted" style="margin-right: 0.5em;">Sponser Type</b> {{sponsership.sponser_type}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Sponser Name</b> {{ sponsership.sponser_name }}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Sponsership Start Date</b> {{ sponsership.sponsership_start_date}}<br>
+        <b class="text-muted" style="margin-right: 0.5em;">Sponsership End Date</b> {{ sponsership.sponsership_end_date}}<br>
+        </div>
+
+        </div>
+        </div>
+
+         <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger"  data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+        </div>
+
+      <div>
+        {% if user != current_user %}
+        {% if current_user.is_administrator() %}
+         <button  class="btn btn-outline-warning btn-sm m-1" type="button" name="button"><a href="{{ url_for('users.account',id=user.id) }}">{{ ('edit profile : Admin ') }}</a></button>
+         <button class="btn btn-outline-info btn-sm m-1" type="button" name="button"><a href="{{ url_for('users.media',id=user.id) }}">{{ ('Add Pictures : Admin') }}</a>
+        </button>
+         <button class="btn btn-outline-info btn-sm m-1" type="button" name="button"><a href="{{ url_for('users.events',id=user.id) }}">{{ (' Create Event : Admin ') }}</a>
+        </button>
+        <button class="btn btn-outline-info btn-sm m-1" type="button" name="button"><a href="{{ url_for('posts.new_post',id=user.id) }}">{{ (' Create Post : Admin') }}</a>
+        </button>
+         {% endif %}
+         {% endif %}
+        {% if user == current_user %}
+
+        {% elif not current_user.is_following(user) %}
+              <button    class="btn btn-outline-secondary btn-sm m-1"  type="button" name="button"><a href="{{ url_for('users.follow', id=user.id) }}">{{ ('Follow   ') }}</a></button>
+              {% else %}
+              <button   class="btn btn-outline-danger " type="button" title="follow" name="button"><a href="{{ url_for('users.unfollow', id=user.id) }}"><i class="fas fa-user-times"></i></a></button>
+              {% endif %}
+            <b class="basicf">  Followers: <span class="badge">{{ user.followers.count() -1 }}</span></b>
+            <b class="basicf"> Following: <span class="badge">{{ user.followed.count() -1 }}</span></b>
+
+        {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+              <span class="label label-default">Follows you</span>
+        {% endif %}
+
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+
+</article>
+
+  {% for post in posts.items %}
+
+
+     <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+
+    <article class="media comment-content">
+
+     <img  class="rounded-circle article-img"  src="{{ url_for('static', filename='profile_pics/' + post.Protagonist.image_file) }}">
+        {% if post.category=='Sports' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-basketball-ball"></i></h1>
+        {% endif %}
+         {% if post.category=='Design' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-palette"></i></h1>
+        {% endif %}
+         {% if post.category=='Travel' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-umbrella-beach"></i></h1>
+        {% endif %}
+        {% if post.category=='Peoples Corner' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-person-booth"></i></h1>
+        {% endif %}
+         {% if post.category=='Music' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-podcast"></i></h1>
+        {% endif %}
+         {% if post.category=='Others' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-project-diagram"></i></h1>
+        {% endif %}
+      {% if current_user.is_authenticated %}
+          <h2 style="position: absolute; margin-left: 2.2em;"><a class="text-primary" href="{{ url_for('users.user', id=post.Protagonist.id) }}">{{ post.Protagonist.username }}</a></h2>
+          {% else %}
+          <h2  style="position: absolute; margin-left: 2.2em;">{{ post.Protagonist.username }}</h2>
+          {% endif %}
+
+          <small style="margin-top: 3.2em; position: relative; " class="text-muted"> {{ moment(post.date_posted).fromNow() }}</small>
+
+          <button class="btn btn-link" style="margin-top: 2em;" ><a href="http://maps.google.com/?q={{post.city }}"><i style="color: black;" class="fas fa-map-marker-alt"></i>&#xA0;{{post.city }}</a></button>
+
+        </article>
+        <br>
+
+
+
+        <div class="article-metadata">
+        <h2>{{post.category}}</h2>
+        </div>
+        <div class="article-content">
+          <h4><a class="article-title" href="{{ url_for('posts.postn', post_id=post.id) }}">{{post.story_line }}</a></h4>
+        </div>
+        <div class="article-content">
+          <iframe class="iframe" scrolling="yes" src="https://www.youtube.com/embed/{{post.youtube_link.split("=")[1]}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div><br></div>
+        <div class="article-content">
+        <p id="content" class="story" class="text-secondary"scrolling="yes"><b>My Story</b> <br> <br> {{post.story_text }}
+        </p>
+         <a href="{{ url_for('posts.postn', post_id=post.id) }}"><b>Read more</b></a>
+        </div>
+        </div>
+      <div class="row"></div>
+      <br><br>
+
+           <div  class="article-content">
+           <a href="{{ url_for('posts.postn', post_id=post.id) }}#comments">
+           <span class="label label-primary">{{ post.comments.count() }} Comments</span></a>
+           </div>
+  </div>
+</article>
+
+{% endfor %}
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if posts.page == page_num %}
+      <a class="btn btn-info mb-4" href="{{ url_for('users.user', id=user.id, page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-info mb-4" href="{{ url_for('users.user', id=user.id, page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+
+
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.sponser_type.label(class="form-control-label") }}
+                {% if form.sponser_type.errors %}
+                    {{ form.sponser_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sponser_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sponser_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.sponser_name.label(class="form-control-label") }}
+                {% if form.sponser_name.errors %}
+                    {{ form.sponser_name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sponser_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sponser_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.sponsership_start_date.label(class="form-control-label") }}
+                {% if form.sponsership_start_date.errors %}
+                    {{ form.sponsership_start_date(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sponsership_start_date.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sponsership_start_date(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+
+            <!--Insert here your items in div element for all the data you need  -->
+
+
+            <!--Repeat this code block for additional item you want to show  -->
+
+            <div class="form-group">
+                {{ form.sponsership_end_date.label(class="form-control-label") }}
+                {% if form.sponsership_end_date.errors %}
+                    {{ form.sponsership_end_date(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.sponsership_end_date.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.sponsership_end_date(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            
+
+
+
+
+
+
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

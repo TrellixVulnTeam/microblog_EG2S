@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% block content %}
+  {% for blog in blogs.items %}
+
+
+     <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+
+    <article class="media comment-content">
+
+     <img  class="rounded-circle article-img"  src="{{ url_for('static', filename='profile_pics/' + blog.blog_author.image_file) }}">
+       {% if blog.blog_category=='Sports' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-basketball-ball"></i></h1>
+        {% endif %}
+         {% if blog.blog_category=='Design' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-palette"></i></h1>
+        {% endif %}
+         {% if blog.blog_category=='Travel' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-umbrella-beach"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Peoples Corner' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-person-booth"></i></h1>
+        {% endif %}
+         {% if blog.blog_category=='Music' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-podcast"></i></h1>
+        {% endif %}
+         {% if blog.blog_category=='Others' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-project-diagram"></i></h1>
+        {% endif %}
+
+<!-- New Blog Categories other than blog blog_author Categories -->
+        {% if blog.blog_category=='Arts' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fab fa-opencart"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Health and Fitness' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-hiking"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Wellness and Beauty' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-spa"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Food and Drink' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-cocktail"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Writing' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-pen-nib"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Language and Culture' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-language"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Social and Political Movements' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-landmark"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Film' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-film"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Games and Sci-Fi' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-gamepad"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Beliefs' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-gavel"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Dance' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-drum"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Singing' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-microphone-alt"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Hobbies and Crafts' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-drafting-compass"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Family and Social' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-users"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Career and Business' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-briefcase"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Adventure Sports' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-parachute-box"></i></h1>
+        {% endif %}
+        {% if blog.blog_category=='Science and Technology' %}
+        <h1><i style="margin-left: 5em; margin-top: 0.2em; position: absolute; " class="fas fa-atom"></i></h1>
+        {% endif %}
+      {% if current_user.is_authenticated %}
+          <h2 style="position: absolute; margin-left: 2.2em;"><a class="text-primary" href="{{ url_for('users.user', id=blog.blog_author.id) }}">{{ blog.blog_author.username }}</a></h2>
+          {% else %}
+          <h2  style="position: absolute; margin-left: 2.2em;">{{ blog.blog_author.username }}</h2>
+          {% endif %}
+        
+          <small style="margin-top: 3.2em; position: relative; " class="text-muted"> {{ moment(blog.blog_date_posted).fromNow() }}</small>
+
+          <button class="btn btn-link" style="margin-top: 2em;" ><a href="http://maps.google.com/?q={{blog.city }}"><i style="color: black;" class="fas fa-map-marker-alt"></i>&#xA0;{{blog.blog_city }}</a></button>
+           </article>
+        <div class="article-content">
+
+          <h4><a class="article-title" href="{{ url_for('blog.blogn', blog_id=blog.id) }}">{{blog.blog_story_line }}</a></h4>
+        </div>
+        <div class="article-content">
+          <iframe class="iframe" scrolling="yes" src="https://www.youtube.com/embed/{{blog.blog_youtube_link.split("=")[1]}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div id="story" class="article-content">
+        <p id="content" class="story"  class="text-secondary"> <br> <br> {{blog.blog_story_text }}</p>
+        <a href="{{ url_for('blog.blogn', blog_id=blog.id) }}"><b>Read more</b></a>
+        </div>
+        </div>
+
+      <div class="row"></div>
+
+           <div  class="article-content">
+           <a href="{{ url_for('blog.blogn', blog_id=blog.id) }}#comments">
+           <span class="label label-primary">{{ blog.blogcomments.count() }} Comments</span></a>
+           </div>
+  </div>
+</article>
+
+{% endfor %}
+{% for page_num in blogs.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+    {% if blogs.page == page_num %}
+      <a class="btn btn-info mb-4" href="{{ url_for('blog.blog_view', page=page_num) }}">{{ page_num }}</a>
+    {% else %}
+      <a class="btn btn-outline-info mb-4" href="{{ url_for('blog.blog_view', page=page_num) }}">{{ page_num }}</a>
+    {% endif %}
+  {% else %}
+    ...
+  {% endif %}
+{% endfor %}
+{% endblock content %}
+--

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+
+
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.intrest_type.label(class="form-control-label") }}
+                {% if form.intrest_type.errors %}
+                    {{ form.intrest_type(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.intrest_type.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.intrest_type(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+            
+
+
+
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

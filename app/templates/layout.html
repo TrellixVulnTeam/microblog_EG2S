@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+
+  <!-- Bootstrap CSS -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css" integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/brands.css" integrity="sha384-QT2Z8ljl3UupqMtQNmPyhSPO/d5qbrzWmFxJqmY7tqoTuT2YrQLEqzvVOP2cT5XW" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css" integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+  <script type="text/javascript">
+    var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+  }
+  </script>
+
+  <script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+  {{ moment.include_jquery() }}
+  {{ moment.include_moment() }}
+
+
+
+  {% if title %}
+      <title>TTB Home -{{ title }}</title>
+  {% else %}
+  <title>The Tribal Box</title>
+  {% endif %}
+</head>
+<script src="js/bootstrap.min.js"></script>
+<body>
+  <header class="site-header">
+    <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+           <div><a class="nav-item nav-link" href="{{ url_for('main.home') }}"><i class="fas fa-dice-d6"></i>&#xA0;Home</a></div>
+           <div>        </div>
+            <form action="#" method="get" class="searchform form-inline" role="search">
+                                <input type="hidden" value="search" name="view">
+                                <div class="input-group">
+                                    <input type="text" name="searchword" required class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                      <button class="btn btn-danger" type="submit"><i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+          </div>
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+              <a class="nav-item nav-link" href="{{ url_for('visualization.overview') }}"><i class="fa fa-pie-chart"></i>&#xA0;Overview  </a>
+              <a class="nav-item nav-link" href="{{ url_for('visualization.index') }}"><i class="fa fa-line-chart"></i>&#xA0;Analytics</a>
+               <a class="nav-item nav-link" href="{{ url_for('blog.blog_view') }}"><i class="fas fa-book-reader"></i>&#xA0;Blog</a>
+              <a class="nav-item nav-link" href="{{ url_for('users.user', id=current_user.id) }}"><i class="fa fa-user"></i>&#xA0;Profile</a>
+              <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-power-off"></i>&#xA0;Logout</a>
+            {% else %}
+              <a class="nav-item nav-link" href="{{ url_for('auth.login') }}"><i class="far fa-user-circle"></i>&#xA0;Login</a>
+              <a class="nav-item nav-link" href="{{ url_for('auth.register') }}"><i class="fas fa-poll-h"></i>&#xA0;Sign Up</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}
+
+        {% endblock %}
+
+  </main>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

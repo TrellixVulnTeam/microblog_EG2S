@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+
+
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.blog_city.label(class="form-control-label") }}
+                {% if form.blog_city.errors %}
+                    {{ form.blog_city(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.blog_city.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.blog_city(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.blog_category.label(class="form-control-label") }}
+                {% if form.blog_category.errors %}
+                    {{ form.blog_category(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.blog_category.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.blog_category(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.blog_story_line.label(class="form-control-label") }}
+                {% if form.blog_story_line.errors %}
+                    {{ form.blog_story_line(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.blog_story_line.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.blog_story_line(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+            <!--Repeat this code block for additional item you want to show  -->
+
+            <!--Insert here your items in div element for all the data you need  -->
+
+
+            <!--Repeat this code block for additional item you want to show  -->
+
+            <div class="form-group">
+                {{ form.blog_story_text.label(class="form-control-label") }}
+                {% if form.blog_story_text.errors %}
+                    {{ form.blog_story_text(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.blog_story_text.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.blog_story_text(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+            <!--Repeat this code block for additional item you want to show  -->
+            <div class="form-group">
+                {{ form.blog_youtube_link.label(class="form-control-label") }}
+                {% if form.blog_youtube_link.errors %}
+                    {{ form.blog_youtube_link(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.blog_youtube_link.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.blog_youtube_link(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!--Insert here your items in div element for all the data you need  -->
+
+
+            <!--PLACEHOLDERS to add more data fields  -->
+
+
+
+
+
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}
