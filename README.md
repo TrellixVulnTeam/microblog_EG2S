@@ -1,14 +1,14 @@
 # QuantamixSkillTest
 
 
-# git
+# Git
 
 first you need to clone the repository from the link given below 
 
 https://github.com/abhishekm47/microblog
 
 
-# python
+# Python
 
 Our whole project is python based and in your current assignment you have to run web application which is flask-python web framework so you have to install python in order to run and work on this assignment 
 
@@ -19,7 +19,7 @@ it's essential dependencies
 
 3. install anaconda navigator and then use anaconda prompt as your command line it will provide you support for python and pip
 
-### how to setup and run framework
+### How to setup and run framework
 1. first of all you have to install 'virtualenv' in your local machine it's a python package which allow us to create multiple 
    virtual environments for different projects
    
