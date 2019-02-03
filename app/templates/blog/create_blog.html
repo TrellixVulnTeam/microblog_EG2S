@@ -106,4 +106,9 @@
         </div>
     </form>
 </div>
+
+<!-- loading and configuring CKEditor as a rich-text-editor support  -->
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='blog_story_text') }}
+
 {% endblock content %}

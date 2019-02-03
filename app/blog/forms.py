@@ -4,6 +4,8 @@ from wtforms import StringField, TextAreaField, PasswordField, SubmitField, Bool
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
 from app.models import User, Comment
+# Grabbing CKEditorField as a rich-text-editor support
+from flask_ckeditor import CKEditorField
 
 
 class BlogForm(FlaskForm):
@@ -17,7 +19,7 @@ class BlogForm(FlaskForm):
                           ('Adventure Sports', 'Adventure Sports'),('Science and Technology', 'Science and Technology'),
                           ('Others', 'others..')])
     blog_story_line = TextAreaField('Blog Headline', validators=[DataRequired()])
-    blog_story_text = TextAreaField('Blog Text', validators=[DataRequired()])
+    blog_story_text = CKEditorField('Blog Text', validators=[DataRequired()])
     blog_youtube_link= StringField('Youtube Link', validators=[DataRequired()])
     blog_picture = FileField('Add Blog Picture', validators=[FileAllowed(['jpg', 'png'])])
 
